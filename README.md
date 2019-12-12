@@ -1,6 +1,6 @@
-### 闲潭(wyohoxtan)
+### 闲潭
+`wyohoxtan`
 
----
-
-### Welcome （https://wyohoxtan.github.io/）
+### Welcome  
+https://wyohoxtan.github.io
 
