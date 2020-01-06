@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-12-15T06:26:14.966Z</updated>
+  <updated>2020-01-06T07:10:50.229Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>InstallAnywhere打包web单机版</title>
+    <link href="http://yoursite.com/2020/01/03/InstallAnywhere%E6%89%93%E5%8C%85web%E5%8D%95%E6%9C%BA%E7%89%88/"/>
+    <id>http://yoursite.com/2020/01/03/InstallAnywhere%E6%89%93%E5%8C%85web%E5%8D%95%E6%9C%BA%E7%89%88/</id>
+    <published>2020-01-03T07:37:30.000Z</published>
+    <updated>2020-01-06T07:10:50.229Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="InstallAnywhere打包web">InstallAnywhere打包web<a href="2020/01/03/InstallAnywhere打包web单机版#InstallAnywhere打包web"></a></h3><p><code>InstallAnywhere,web</code></p><hr><h5 id="一、准备工作">一、准备工作<a href="2020/01/03/InstallAnywhere打包web单机版#一、准备工作"></a></h5><p>1、下载InstallAnywhere2020，并安装</p><ul><li><p>① 注册，下载地址：<a href="https://resources.flexera.com/web/www/landing/eval-download-installanywhere.html?id=IA-PRE（21天试用期）" target="_blank" rel="noopener">https://resources.flexera.com/web/www/landing/eval-download-installanywhere.html?id=IA-PRE（21天试用期）</a></p></li><li><p>② 安装</p></li></ul><p>2、下载JDK1.8，并安装</p><p>3、下载MySQL8 免安装</p><p>4、下载Tomcat8.5 免安装</p><p>5、本地创建文件夹，将当前的jdk，mysql，Tomcat复制到当前文件夹中</p><h5 id="二、创建Project">二、创建Project<a href="2020/01/03/InstallAnywhere打包web单机版#二、创建Project"></a></h5><p>※ 打开InstallAnywhere 2020，建立Basic Project Template，选择Advanced Designer,设置Title，Name等</p><ol><li><p>Project – info ：填写安装程序标题，安装文件名称，产品名称，其他项目可不填写。</p></li><li><p>Project – Description：填写产品描述、开发商、开发商主页、邮件等。</p></li><li><p>Installer UI – Look&amp;Feel：自定义安装界面、标题、标题颜色等。</p></li><li><p>Organization：组织机构信息，尚未研究。</p></li><li><p>Pre – install ：安装前准备，可以自定义安装步骤，修改各个步骤的标题及内容。</p></li><li><p>Install ：至关重要的一步，首先准备好你要打包的文件（tomcat免安装版、mysql免安装版、jdk）</p></li></ol><p>※ 设置本地语言</p><ul><li>Project -&gt; Locales -&gt; ,选择需要的本地化语言</li></ul><h5 id="三、设置环境变量">三、设置环境变量<a href="2020/01/03/InstallAnywhere打包web单机版#三、设置环境变量"></a></h5><p>Install -&gt;，按钮Add Action…&gt;Set System Environment Variable&gt;Add &gt;，</p><p>设置JAVA_HOME和CATALINA_HOME,CATALINA_DIR,PATH 四个系统环境变量。其中<code>$USER_INSTALL_DIR$</code>表示用户选择的安装路径。</p><figure class="highlight"><div><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">JAVA_HOME  <span class="variable">$USER_INSTALL_DIR</span>$\jdk1.8</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">CATALINA_HOME <span class="variable">$USER_INSTALL_DIR</span>$\tomcat8.5</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">3</span></pre></td><td class="code"><pre><span class="line">CATALINA_DIR <span class="variable">$USER_INSTALL_DIR</span>$\tomcat8.5\bin</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">4</span></pre></td><td class="code"><pre><span class="line">PATH  <span class="variable">$USER_INSTALL_DIR</span>$\jdk1.8\bin;<span class="variable">$USER_INSTALL_DIR</span>$\mysql8\bin;<span class="variable">$USER_INSTALL_DIR</span>$\tomcat8.5\bin;</span></pre></td></tr><tr><td class="gutter"><pre><span class="line">5</span></pre></td><td class="code"><pre><span class="line">C:\Windows\System32</span></pre></td></tr></table></div></figure><p>将jdk,tomcat,mysql 通过按钮Add Files…添加进来放在 User Install Folder直接目录下</p><h5 id="四、注册服务">四、注册服务<a href="2020/01/03/InstallAnywhere打包web单机版#四、注册服务"></a></h5><p>1、注册mysql服务：</p><ul><li><p>在Post-install中，addAction 选择”Execute Script/Batch file” 在Comment中取名为”注册MySQL服务”，在Script中写入</p><figure class="highlight"><div><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">Call <span class="string">"<span class="variable">$USER_INSTALL_DIR</span>$/mysql8/bin/mysqld"</span> -remove   </span></pre></td></tr><tr><td class="gutter"><pre><span class="line">2</span></pre></td><td class="code"><pre><span class="line">Call <span class="string">"<span class="variable">$USER_INSTALL_DIR</span>$/mysql8/bin/mysqld"</span> -install</span></pre></td></tr></table></div></figure></li></ul><p>2、启动mysql：</p><ul><li>在Post-install中，addAction 选择”Execute Script/Batch file” 在Comment中取名为”启动MySQL”，在Script中写入</li></ul><figure class="highlight"><div><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line">net start mysql</span></pre></td></tr></table></div></figure><p>3、启动Tomcat</p><ul><li>在Post-install中，addAction 选择”Execute Script/Batch file” 在Comment中取名为”启动Tomcat”，在Script中写入</li></ul><figure class="highlight"><div><table><tr><td class="gutter"><pre><span class="line">1</span></pre></td><td class="code"><pre><span class="line"><span class="variable">$USER_INSTALL_DIR</span>$/tomcat8.5/bin/startup.bat</span></pre></td></tr></table></div></figure><p>4、</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;InstallAnywhere打包web&quot;&gt;InstallAnywhere打包web&lt;a href=&quot;2020/01/03/InstallAnywhere打包web单机版#InstallAnywhere打包web&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;&lt;code&gt;Instal
+      
+    
+    </summary>
+    
+    
+    
+      <category term="web单机版" scheme="http://yoursite.com/tags/web%E5%8D%95%E6%9C%BA%E7%89%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>闲潭杂记</title>
+    <link href="http://yoursite.com/2019/12/29/%E9%97%B2%E6%BD%AD%E6%9D%82%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/12/29/%E9%97%B2%E6%BD%AD%E6%9D%82%E8%AE%B0/</id>
+    <published>2019-12-29T03:05:01.000Z</published>
+    <updated>2020-01-03T07:32:44.540Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="闲散文章随笔">闲散文章随笔<a href="2019/12/29/闲潭杂记#闲散文章随笔"></a></h3><hr><p>《六朝志怪》</p><p>​    开篇 李贺《神弦》</p><p>​    所谓六朝： 三国，晋，宋，齐，梁，陈</p><p>​    逸史所谓何？书中有言：继续活在人们口头上的传说一旦被记录下来，就成为了具有浓厚小说意味的逸史</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;闲散文章随笔&quot;&gt;闲散文章随笔&lt;a href=&quot;2019/12/29/闲潭杂记#闲散文章随笔&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;《六朝志怪》&lt;/p&gt;
+&lt;p&gt;​    开篇 李贺《神弦》&lt;/p&gt;
+&lt;p&gt;​    所谓六朝： 三国，晋，宋，齐，梁，陈&lt;/p&gt;
+&lt;p&gt;​
+      
+    
+    </summary>
+    
+    
+    
+      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>hexo_inside博客主题优化</title>
