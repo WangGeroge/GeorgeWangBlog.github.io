@@ -8,20 +8,20 @@
 <link rel="canonical" href="http://82u0q0.coding-pages.com/2020/08/17/Hadoop%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/">
 <link rel="icon" type="image/x-icon" href="/img/wyohoxtan.jpeg">
 
-<meta name="description" content="一、前提条件：1️⃣ 版本选择问题 考虑因素： 环境稳定程度 安装难易度 所考虑因素： 是否为开源软件，即是否免费。 是否有稳定版，这个一般软件官方网站会给出说明。 是否经实践验证，这个可通过检查是否有一些大点的公司已经在生产环境中使用知道 是否有强大的社区支持，当出现一个问题时，能够通过社区、论坛等网络资源快速获取解决方法     考虑到大数据平台高效的部署和安装，中心化的配置管理，使用过程中的">
+<meta name="description" content="一、前提条件：1️⃣ 版本选择问题 考虑因素： 环境稳定程度 安装难易度 所考虑因素： 是否为开源软件，即是否免费。 是否有稳定版，这个一般软件官方网站会给出说明。 是否经实践验证，这个可通过检查是否有一些大点的公司已经在生产环境中使用知道 是否有强大的社区支持，当出现一个问题时，能够通过社区、论坛等网络资源快速获取解决方法     考虑到大数据平台高效的部署和安装，中心化的配置管理，使用过程中">
 <meta name="keywords" content="Hadoop">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Hadoop集群部署">
 <meta property="og:url" content="http:&#x2F;&#x2F;82u0q0.coding-pages.com&#x2F;2020&#x2F;08&#x2F;17&#x2F;Hadoop%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2&#x2F;index.html">
 <meta property="og:site_name" content="闲潭个人博客">
-<meta property="og:description" content="一、前提条件：1️⃣ 版本选择问题 考虑因素： 环境稳定程度 安装难易度 所考虑因素： 是否为开源软件，即是否免费。 是否有稳定版，这个一般软件官方网站会给出说明。 是否经实践验证，这个可通过检查是否有一些大点的公司已经在生产环境中使用知道 是否有强大的社区支持，当出现一个问题时，能够通过社区、论坛等网络资源快速获取解决方法     考虑到大数据平台高效的部署和安装，中心化的配置管理，使用过程中的">
+<meta property="og:description" content="一、前提条件：1️⃣ 版本选择问题 考虑因素： 环境稳定程度 安装难易度 所考虑因素： 是否为开源软件，即是否免费。 是否有稳定版，这个一般软件官方网站会给出说明。 是否经实践验证，这个可通过检查是否有一些大点的公司已经在生产环境中使用知道 是否有强大的社区支持，当出现一个问题时，能够通过社区、论坛等网络资源快速获取解决方法     考虑到大数据平台高效的部署和安装，中心化的配置管理，使用过程中">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http:&#x2F;&#x2F;82u0q0.coding-pages.com&#x2F;img&#x2F;wyohoxtan.jpeg">
-<meta property="og:updated_time" content="2020-08-21T09:26:26.980Z">
+<meta property="og:updated_time" content="2020-08-21T10:27:45.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;82u0q0.coding-pages.com&#x2F;img&#x2F;wyohoxtan.jpeg">
 
-<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"闲潭","description":"路漫漫其修远兮，吾将上下而求索","image":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg"},"url":"http://82u0q0.coding-pages.com","image":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg","description":"路漫漫其修远兮，吾将上下而求索","author":{"@type":"Person","name":"闲潭","description":"路漫漫其修远兮，吾将上下而求索","image":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg"},"inLanguage":{"@type":"Language","alternateName":"zh-Hans"}},{"@context":"http://schema.org","@type":"Article","articleSection":"大数据","url":"http://82u0q0.coding-pages.com/2020/08/17/Hadoop%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/","headline":"Hadoop集群部署","image":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg","datePublished":"2020-08-17T08:32:33.000Z","dateModified":"2020-08-21T09:26:26.980Z","keywords":"Hadoop","description":"路漫漫其修远兮，吾将上下而求索","publisher":{"@type":"Organization","name":"闲潭个人博客","logo":{"@type":"ImageObject","url":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg"}},"author":{"@type":"Person","name":"闲潭","description":"路漫漫其修远兮，吾将上下而求索","image":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg"},"inLanguage":{"@type":"Language","alternateName":"zh-Hans"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://82u0q0.coding-pages.com/2020/08/17/Hadoop%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/"}}]</script>
+<script type="application/ld+json">[{"@context":"http://schema.org","@type":"WebSite","publisher":{"@type":"Person","name":"闲潭","description":"路漫漫其修远兮，吾将上下而求索","image":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg"},"url":"http://82u0q0.coding-pages.com","image":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg","description":"路漫漫其修远兮，吾将上下而求索","author":{"@type":"Person","name":"闲潭","description":"路漫漫其修远兮，吾将上下而求索","image":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg"},"inLanguage":{"@type":"Language","alternateName":"zh-Hans"}},{"@context":"http://schema.org","@type":"Article","articleSection":"大数据","url":"http://82u0q0.coding-pages.com/2020/08/17/Hadoop%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/","headline":"Hadoop集群部署","image":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg","datePublished":"2020-08-17T08:32:33.000Z","dateModified":"2020-08-21T10:27:45.211Z","keywords":"Hadoop","description":"路漫漫其修远兮，吾将上下而求索","publisher":{"@type":"Organization","name":"闲潭个人博客","logo":{"@type":"ImageObject","url":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg"}},"author":{"@type":"Person","name":"闲潭","description":"路漫漫其修远兮，吾将上下而求索","image":"http://82u0q0.coding-pages.com/img/wyohoxtan.jpeg"},"inLanguage":{"@type":"Language","alternateName":"zh-Hans"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://82u0q0.coding-pages.com/2020/08/17/Hadoop%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/"}}]</script>
 
 
 <link rel="alternate" type="application/atom+xml" title="闲潭个人博客" href="/atom.xml">
@@ -29,7 +29,7 @@
 <link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
 <link href="/styles.6d727dade1159bc77736.css" rel="stylesheet">
 <link rel="stylesheet" href="/theme.9c954694e36f4cdd6092.css">
-<script src="/config.3f9781a2252936d928a0.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/config.a92fa9ad34b60b261940.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 <link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
 <body lang="zh-Hans">
